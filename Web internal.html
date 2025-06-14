@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atma Store - Toko Aplikasi Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff3366;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 5%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+            color: #ffd700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 5%;
+            text-align: center;
+            background: linear-gradient(rgba(106, 17, 203, 0.8), rgba(37, 117, 252, 0.8)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.6);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 4rem 5%;
+            background: var(--light);
+        }
+
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            height: 200px;
+            background: linear-gradient(to right, #f0f2f5, #e4e7eb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--primary);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .buy-btn {
+            display: block;
+            width: 100%;
+            background: var(--success);
+            color: white;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .buy-btn:hover {
+            background: #218838;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding: 1rem 0;
+            scrollbar-width: none;
+        }
+
+        .testimonial-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            flex: 0 0 350px;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .testimonial-name h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .testimonial-name p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+        }
+
+        .stars {
+            color: #ffd700;
+            margin: 1rem 0;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 5%;
+            background: var(--light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, var(--dark), #212529);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-col p {
+            margin-bottom: 1rem;
+            color: #bbb;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                width: 100%;
+                margin-top: 1rem;
+                display: none;
+            }
+            
+            nav.show {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .testimonial-card {
+                flex: 0 0 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-shopping-bag"></i>
+                <span>Atma Store</span>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#products">Produk</a></li>
+                    <li><a href="#features">Keunggulan</a></li>
+                    <li><a href="#testimonials">Testimoni</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Akses Premium dengan Harga Terjangkau</h1>
+        <p>Atma Store menyediakan beragam aplikasi premium seperti Alight Motion, CapCut, KineMaster, PicsArt, PixelLab, Netflix, dan banyak lagi dengan harga spesial</p>
+        <a href="#products" class="cta-button">Lihat Produk <i class="fas fa-arrow-right"></i></a>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2>Mengapa Memilih Atma Store?</h2>
+            <p>Kami menawarkan pengalaman berbelanja aplikasi premium terbaik</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-tag"></i>
+                <h3>Harga Terjangkau</h3>
+                <p>Dapatkan aplikasi premium dengan harga yang sangat bersaing</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Proses Cepat</h3>
+                <p>Proses aktivasi hanya membutuhkan waktu 5-10 menit</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Garansi Aman</h3>
+                <p>Garansi penggantian jika akun mengalami masalah</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset"></i>
+                <h3>Support 24/7</h3>
+                <p>Tim support siap membantu kapan saja</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="products-container">
+            <div class="section-title">
+                <h2>Produk Unggulan Kami</h2>
+                <p>Pilih aplikasi premium favorit Anda</p>
+            </div>
+            <div class="categories">
+                <button class="category-btn active">Semua</button>
+                <button class="category-btn">Video Editing</button>
+                <button class="category-btn">Photo Editing</button>
+                <button class="category-btn">Entertainment</button>
+                <button class="category-btn">Produktivitas</button>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Alight Motion Premium</h3>
+                        <p>Video editor profesional dengan fitur premium tanpa batas</p>
+                        <div class="product-price">Rp 25.000</div>
+                        <a href="#" class="buy-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>CapCut Pro</h3>
+                        <p>Edit video dengan template profesional dan efek eksklusif</p>
+                        <div class="product-price">Rp 20.000</div>
+                        <a href="#" class="buy-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>KineMaster Diamond</h3>
+                        <p>Video editor kelas studio dengan semua fitur premium</p>
+                        <div class="product-price">Rp 35.000</div>
+                        <a href="#" class="buy-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>PicsArt Gold</h3>
+                        <p>Edit foto dan buat desain dengan semua fitur premium</p>
+                        <div class="product-price">Rp 25.000</div>
+                        <a href="#" class="buy-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>PixelLab Pro</h3>
+                        <p>Editor teks dan grafik premium untuk desain kreatif</p>
+                        <div class="product-price">Rp 15.000</div>
+                        <a href="#" class="buy-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Netflix Premium</h3>
+                        <p>Akses semua film dan serial tanpa iklan, 4K UHD</p>
+                        <div class="product-price">Rp 45.000/bulan</div>
+                        <a href="#" class="buy-btn">Beli Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2>Apa Kata Pelanggan?</h2>
+            <p>Testimoni dari pelanggan puas Atma Store</p>
+        </div>
+        <div class="testimonial-container">
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">R</div>
+                    <div class="testimonial-name">
+                        <h4>Rudi Santoso</h4>
+                        <p>Content Creator</p>
+                    </div>
+                </div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Beli Alight Motion Premium di Atma Store, prosesnya cepat dan akunnya masih aktif sampai sekarang. Sangat recommended!"</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">S</div>
+                    <div class="testimonial-name">
+                        <h4>Sinta Wulandari</h4>
+                        <p>Photographer</p>
+                    </div>
+                </div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"PicsArt Gold dengan harga terjangkau, semua fitur premium terbuka. Pelayanan CS juga ramah dan responsif."</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">A</div>
+                    <div class="testimonial-name">
+                        <h4>Andi Pratama</h4>
+                        <p>Video Editor</p>
+                    </div>
+                </div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="testimonial-text">"KineMaster Diamond yang saya beli sudah 6 bulan masih aktif. Proses aktivasi hanya 10 menit. Terima kasih Atma Store!"</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="faq-container">
+            <div class="section-title">
+                <h2>Pertanyaan Umum</h2>
+                <p>Temukan jawaban atas pertanyaan Anda</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Bagaimana cara pembelian di Atma Store?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Pilih produk yang ingin dibeli, klik tombol "Beli Sekarang", lalu ikuti instruksi pembayaran. Setelah pembayaran berhasil, akun premium akan dikirim ke email Anda dalam waktu 5-15 menit.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Berapa lama masa aktif akun premium?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Masa aktif akun bervariasi tergantung produk. Umumnya akun editing seperti Alight Motion dan CapCut memiliki masa aktif seumur hidup. Untuk layanan streaming seperti Netflix, masa aktif sesuai dengan paket yang dibeli (biasanya 1 bulan).</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Apakah akun premium bisa digunakan di beberapa perangkat?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Untuk aplikasi editing, akun biasanya bisa digunakan di 1-2 perangkat secara bersamaan. Untuk layanan streaming seperti Netflix, tergantung tipe akun yang dibeli (Basic, Standard, atau Premium).</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Bagaimana jika akun mengalami masalah?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kami memberikan garansi penggantian jika akun mengalami masalah dalam masa garansi. Silakan hubungi tim support kami melalui WhatsApp atau email dengan menyertakan bukti pembelian.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Metode pembayaran apa saja yang diterima?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Kami menerima pembayaran melalui transfer bank (BCA, BRI, Mandiri, BNI), e-wallet (OVO, Gopay, Dana, ShopeePay), dan QRIS.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>Atma Store</h3>
+                <p>Toko aplikasi premium terpercaya dengan harga terjangkau. Kami menyediakan berbagai aplikasi premium untuk kebutuhan editing dan hiburan Anda.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Produk Populer</h3>
+                <ul>
+                    <li><a href="#">Alight Motion Premium</a></li>
+                    <li><a href="#">CapCut Pro</a></li>
+                    <li><a href="#">KineMaster Diamond</a></li>
+                    <li><a href="#">PicsArt Gold</a></li>
+                    <li><a href="#">Netflix Premium</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Link Cepat</h3>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#products">Produk</a></li>
+                    <li><a href="#features">Keunggulan</a></li>
+                    <li><a href="#testimonials">Testimoni</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Kontak Kami</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> cs@atmastore.id</li>
+                    <li><i class="fas fa-phone"></i> +62 812-3456-7890</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                    <li><i class="fas fa-clock"></i> Buka 24/7</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Atma Store. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            nav.classList.toggle('show');
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (nav.classList.contains('show')) {
+                    nav.classList.remove('show');
+                }
+            });
+        });
+        
+        // Category Filter
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // In a real implementation, you would filter products here
+            });
+        });
+    </script>
+</body>
+</html>
